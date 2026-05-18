@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,36 +16,44 @@ public class PlayerShooting : MonoBehaviour
     float timeBetweenShots;
 
     InputAction attackAction;
-    Coroutine shoot;
+    Vector2 startShootPosition;
+    Vector2 endShootPosition;
+
+    bool canPlayerShoot;
+    bool isHoldingDownMouse;
 
     void Awake()
     {
         attackAction = InputSystem.actions.FindAction("Attack");
-        shoot = null;
+        canPlayerShoot = true;
     }
 
     void Update()
     {
-        if (attackAction.IsPressed() && shoot == null)
+        if (attackAction.IsPressed() && canPlayerShoot && !isHoldingDownMouse)
         {
-            shoot = StartCoroutine(Shoot());
+            isHoldingDownMouse = true;
+            startShootPosition = Mouse.current.position.value;
         }
-        else if (!attackAction.IsPressed() && shoot != null)
+        if (!attackAction.IsPressed() && isHoldingDownMouse)
         {
-            StopCoroutine(shoot);
-            shoot = null;
+            isHoldingDownMouse = false;
+            endShootPosition = Mouse.current.position.value;
+            Shoot();
+            SetCanPlayerShoot(false);
         }
     }
 
-    IEnumerator Shoot()
+    public bool SetCanPlayerShoot(bool value)
     {
-        GameObject daggerObject = Instantiate(
-            dagger,
-            shootingPosition.position,
-            quaternion.identity
-        );
-        int direction = (int)Mathf.Sign(transform.localScale.x);
-        daggerObject.transform.rotation = Quaternion.Euler(0, 0, -direction * 90);
-        yield return new WaitForSeconds(timeBetweenShots);
+        canPlayerShoot = value;
+        return canPlayerShoot;
+    }
+
+    void Shoot()
+    {
+        Vector2 direction = endShootPosition - startShootPosition;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Instantiate(dagger, shootingPosition.position, Quaternion.Euler(0, 0, angle - 90));
     }
 }

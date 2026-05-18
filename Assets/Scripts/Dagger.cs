@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Dagger : MonoBehaviour
@@ -6,14 +8,16 @@ public class Dagger : MonoBehaviour
     float speed;
 
     [SerializeField]
-    float destroyTimer;
+    float teleportDelay;
 
     Rigidbody2D rb;
     bool hasCollided;
+    PlayerShooting playerShooting;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerShooting = FindAnyObjectByType<PlayerShooting>();
     }
 
     void FixedUpdate()
@@ -22,7 +26,6 @@ public class Dagger : MonoBehaviour
         {
             rb.linearVelocity = transform.up * speed;
         }
-        Destroy(gameObject, destroyTimer);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -31,6 +34,16 @@ public class Dagger : MonoBehaviour
         if (collision.gameObject.layer == platformLayerIndex)
         {
             hasCollided = true;
+            StartCoroutine(TeleportPlayer());
         }
+    }
+
+    IEnumerator TeleportPlayer()
+    {
+        yield return new WaitForSeconds(teleportDelay);
+        playerShooting.transform.position = transform.position;
+        playerShooting.SetCanPlayerShoot(true);
+        yield return null;
+        Destroy(gameObject);
     }
 }
