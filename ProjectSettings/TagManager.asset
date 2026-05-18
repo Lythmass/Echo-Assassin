@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Platform
-  - 
+  - Dagger
   - 
   - 
   - 
@@ -40,6 +40,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Dagger
+    uniqueID: 1266908347
+    locked: 0
+  - name: Platform
+    uniqueID: 3394959887
+    locked: 0
+  - name: Player
+    uniqueID: 3587739957
     locked: 0
   m_RenderingLayers:
   - Default

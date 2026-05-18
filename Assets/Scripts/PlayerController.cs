@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
+        Flip();
         isGrounded = Physics2D.OverlapCircle(groundDetector.position, radius, platformLayer);
         if (!isGrounded)
         {
@@ -82,6 +83,15 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocityY +=
                 (jumpGravityMultiplier - 1) * Physics2D.gravity.y * Time.fixedDeltaTime;
         }
+    }
+
+    void Flip()
+    {
+        bool isMoving = Mathf.Abs(moveInput.x) > Mathf.Epsilon;
+        if (!isMoving)
+            return;
+        int direction = (int)Mathf.Sign(moveInput.x);
+        transform.localScale = new Vector2(direction, transform.localScale.y);
     }
 
     void OnDrawGizmos()
