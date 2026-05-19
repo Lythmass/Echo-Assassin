@@ -13,7 +13,7 @@ public class PlayerShooting : MonoBehaviour
     Transform shootingPosition;
 
     [SerializeField]
-    float timeBetweenShots;
+    TimeManager timeManager;
 
     InputAction attackAction;
     Vector2 startShootPosition;
@@ -32,6 +32,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (attackAction.IsPressed() && canPlayerShoot && !isHoldingDownMouse)
         {
+            timeManager.SlowTimeDown();
             isHoldingDownMouse = true;
             startShootPosition = Mouse.current.position.value;
         }
@@ -41,6 +42,10 @@ public class PlayerShooting : MonoBehaviour
             endShootPosition = Mouse.current.position.value;
             Shoot();
             SetCanPlayerShoot(false);
+        }
+        if (!isHoldingDownMouse)
+        {
+            timeManager.ResetTime();
         }
     }
 
