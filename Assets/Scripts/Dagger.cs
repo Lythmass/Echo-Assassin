@@ -13,11 +13,13 @@ public class Dagger : MonoBehaviour
     Rigidbody2D rb;
     bool hasCollided;
     PlayerShooting playerShooting;
+    CameraShake cameraShake;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerShooting = FindAnyObjectByType<PlayerShooting>();
+        cameraShake = FindAnyObjectByType<CameraShake>();
     }
 
     void FixedUpdate()
@@ -33,6 +35,7 @@ public class Dagger : MonoBehaviour
         int platformLayerIndex = LayerMask.NameToLayer("Platform");
         if (collision.gameObject.layer == platformLayerIndex)
         {
+            cameraShake.ShootShake();
             hasCollided = true;
             StartCoroutine(TeleportPlayer());
         }

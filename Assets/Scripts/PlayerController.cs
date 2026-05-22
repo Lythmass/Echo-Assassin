@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     ParticleSystem landingEffect;
 
     [SerializeField]
+    CameraShake cameraShake;
+
+    [SerializeField]
     float slamThreshold = -60f;
 
     bool isGrounded;
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
             if (!hasLanded && maxFallSpeedBeforeLanding <= slamThreshold)
             {
                 maxFallSpeedBeforeLanding = 0f;
+                cameraShake.SlamShake();
                 landingEffect.Play();
                 hasLanded = true;
             }
