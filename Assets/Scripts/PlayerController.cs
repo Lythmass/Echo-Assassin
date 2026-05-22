@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float coyoteTime;
+
+    [SerializeField]
+    PlayerWallSlide playerWallSlide;
     float currentCoyoteTime;
 
     [Header("Ground Detection")]
@@ -27,7 +30,17 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float radius;
+
+    [Header("Landing Effect")]
+    [SerializeField]
+    ParticleSystem landingEffect;
+
+    [SerializeField]
+    float slamThreshold = -60f;
+
     bool isGrounded;
+    bool hasLanded;
+    float maxFallSpeedBeforeLanding;
     InputAction moveAction;
     InputAction jumpAction;
     Vector2 moveInput;
@@ -50,17 +63,28 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundDetector.position, radius, platformLayer);
         if (!isGrounded)
         {
+            hasLanded = false;
             currentCoyoteTime -= Time.deltaTime;
+            maxFallSpeedBeforeLanding = Mathf.Min(maxFallSpeedBeforeLanding, rb.linearVelocityY);
         }
         else
         {
             currentCoyoteTime = coyoteTime;
+            if (!hasLanded && maxFallSpeedBeforeLanding <= slamThreshold)
+            {
+                maxFallSpeedBeforeLanding = 0f;
+                landingEffect.Play();
+                hasLanded = true;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocityX = moveInput.x * speed;
+        if (!playerWallSlide.GetIsWallJumping())
+        {
+            rb.linearVelocityX = moveInput.x * speed;
+        }
         Jump();
     }
 
@@ -88,10 +112,25 @@ public class PlayerController : MonoBehaviour
     void Flip()
     {
         bool isMoving = Mathf.Abs(moveInput.x) > Mathf.Epsilon;
-        if (!isMoving)
+        if (!isMoving || playerWallSlide.GetIsWallJumping())
             return;
         int direction = (int)Mathf.Sign(moveInput.x);
         transform.localScale = new Vector2(direction, transform.localScale.y);
+    }
+
+    public bool GetIsGrounded()
+    {
+        return isGrounded;
+    }
+
+    public bool GetIsJumping()
+    {
+        return jumpAction.IsPressed();
+    }
+
+    public bool GetIsMoving()
+    {
+        return moveInput.x != 0;
     }
 
     void OnDrawGizmos()
