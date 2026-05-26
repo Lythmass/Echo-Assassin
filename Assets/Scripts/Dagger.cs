@@ -10,16 +10,17 @@ public class Dagger : MonoBehaviour
     [SerializeField]
     float teleportDelay;
 
+    [SerializeField]
+    CameraShakeSO cameraShakeSO;
+
     Rigidbody2D rb;
     bool hasCollided;
     PlayerShooting playerShooting;
-    CameraShake cameraShake;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerShooting = FindAnyObjectByType<PlayerShooting>();
-        cameraShake = FindAnyObjectByType<CameraShake>();
     }
 
     void FixedUpdate()
@@ -33,11 +34,22 @@ public class Dagger : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         int platformLayerIndex = LayerMask.NameToLayer("Platform");
+        int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
         if (collision.gameObject.layer == platformLayerIndex)
         {
-            cameraShake.ShootShake();
+            CameraShake.Instance.ShakeCamera(
+                cameraShakeSO.GetIntensity(),
+                cameraShakeSO.GetFrequency(),
+                cameraShakeSO.GetDuration()
+            );
             hasCollided = true;
             StartCoroutine(TeleportPlayer());
+        }
+        else if (collision.gameObject.layer == enemyLayerIndex)
+        {
+            hasCollided = true;
+            StartCoroutine(TeleportPlayer());
+            Destroy(collision.gameObject, teleportDelay);
         }
     }
 

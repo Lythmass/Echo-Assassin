@@ -1,53 +1,54 @@
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    [SerializeField]
-    float shakeDuration = 0.5f;
-
-    [SerializeField]
-    float shakeMagnitude = 0.5f;
-
-    Vector3 position;
+    float shakeTimer;
+    float startingIntensity;
+    float startingFrequency;
+    float shakeTimerTotal;
+    CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
+    public static CameraShake Instance { get; private set; }
 
     void Awake()
     {
-        position = transform.position;
+        Instance = this;
+        cinemachineBasicMultiChannelPerlin = GetComponent<CinemachineVirtualCamera>()
+            .GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    public void SlamShake()
+    public void ShakeCamera(float intensity, float frequency, float duration)
     {
-        StartCoroutine(PlaySlamShake());
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        cinemachineBasicMultiChannelPerlin.m_FrequencyGain = frequency;
+        startingIntensity = intensity;
+        startingFrequency = frequency;
+        shakeTimer = duration;
+        shakeTimerTotal = duration;
     }
 
-    public void ShootShake()
+    void Update()
     {
-        StartCoroutine(PlayShootShake());
-    }
-
-    IEnumerator PlaySlamShake()
-    {
-        float timeElapsed = 0f;
-        while (timeElapsed < shakeDuration)
+        if (shakeTimer > 0f)
         {
-            transform.position =
-                position + new Vector3(0, Random.insideUnitCircle.y * shakeMagnitude, 0);
-            timeElapsed += Time.deltaTime;
-            yield return null;
+            shakeTimer -= Time.deltaTime;
+            StopCameraShake();
         }
-        transform.position = position;
     }
 
-    IEnumerator PlayShootShake()
+    void StopCameraShake()
     {
-        float timeElapsed = 0f;
-        while (timeElapsed < shakeDuration)
-        {
-            transform.position = position + (Vector3)Random.insideUnitCircle * shakeMagnitude;
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = position;
+        float time = 1 - (shakeTimer / shakeTimerTotal);
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(
+            startingIntensity,
+            0f,
+            time
+        );
+        cinemachineBasicMultiChannelPerlin.m_FrequencyGain = Mathf.Lerp(
+            startingFrequency,
+            0f,
+            time
+        );
     }
 }

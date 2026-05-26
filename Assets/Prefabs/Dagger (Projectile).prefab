@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dagger
   speed: 50
   teleportDelay: 0.1
+  cameraShakeSO: {fileID: 11400000, guid: 1c7301daf34e60f47bdd2a5a562750a3, type: 2}
 --- !u!1 &7231107227977116707
 GameObject:
   m_ObjectHideFlags: 0

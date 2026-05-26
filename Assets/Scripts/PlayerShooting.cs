@@ -34,7 +34,7 @@ public class PlayerShooting : MonoBehaviour
         {
             timeManager.SlowTimeDown();
             isHoldingDownMouse = true;
-            startShootPosition = Mouse.current.position.value;
+            startShootPosition = Camera.main.WorldToScreenPoint(transform.position);
         }
         if (!attackAction.IsPressed() && isHoldingDownMouse)
         {

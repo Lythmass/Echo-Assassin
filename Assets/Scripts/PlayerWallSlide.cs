@@ -37,6 +37,14 @@ public class PlayerWallSlide : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void Update()
+    {
+        if (playerController.GetIsGrounded())
+        {
+            isWallJumping = false;
+        }
+    }
+
     void FixedUpdate()
     {
         WallSlide();
@@ -45,7 +53,7 @@ public class PlayerWallSlide : MonoBehaviour
 
     void WallSlide()
     {
-        if (IsWalled() && !playerController.GetIsGrounded() && !playerController.GetIsMoving())
+        if (IsWalled() && !playerController.GetIsGrounded())
         {
             isWallSliding = true;
             rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -wallSlidingSpeed, float.MaxValue);
@@ -91,7 +99,10 @@ public class PlayerWallSlide : MonoBehaviour
 
     void StopWallJumping()
     {
-        isWallJumping = false;
+        if (playerController.GetIsMoving())
+        {
+            isWallJumping = false;
+        }
     }
 
     public bool GetIsWallJumping()

@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,11 +37,21 @@ public class PlayerController : MonoBehaviour
     ParticleSystem landingEffect;
 
     [SerializeField]
-    CameraShake cameraShake;
-
-    [SerializeField]
     float slamThreshold = -60f;
 
+    [Header("Camera Follow")]
+    [SerializeField]
+    CinemachineVirtualCamera cinemachineVirtualCamera;
+
+    [SerializeField]
+    CameraShakeSO cameraShakeSO;
+
+    [SerializeField]
+    float leftOffset = 0.35f;
+
+    [SerializeField]
+    float rightOffset = 0.65f;
+    CinemachineFramingTransposer cinemachineFramingTransposer;
     bool isGrounded;
     bool hasLanded;
     float maxFallSpeedBeforeLanding;
@@ -57,6 +68,8 @@ public class PlayerController : MonoBehaviour
         platformLayer = LayerMask.GetMask("Platform");
         rb = GetComponent<Rigidbody2D>();
         currentCoyoteTime = coyoteTime;
+        cinemachineFramingTransposer =
+            cinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
     void Update()
@@ -76,7 +89,11 @@ public class PlayerController : MonoBehaviour
             if (!hasLanded && maxFallSpeedBeforeLanding <= slamThreshold)
             {
                 maxFallSpeedBeforeLanding = 0f;
-                cameraShake.SlamShake();
+                CameraShake.Instance.ShakeCamera(
+                    cameraShakeSO.GetIntensity(),
+                    cameraShakeSO.GetFrequency(),
+                    cameraShakeSO.GetDuration()
+                );
                 landingEffect.Play();
                 hasLanded = true;
             }
@@ -120,6 +137,14 @@ public class PlayerController : MonoBehaviour
             return;
         int direction = (int)Mathf.Sign(moveInput.x);
         transform.localScale = new Vector2(direction, transform.localScale.y);
+        if (direction == 1)
+        {
+            cinemachineFramingTransposer.m_ScreenX = leftOffset;
+        }
+        else
+        {
+            cinemachineFramingTransposer.m_ScreenX = rightOffset;
+        }
     }
 
     public bool GetIsGrounded()
