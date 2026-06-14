@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 public class Dagger : MonoBehaviour
@@ -13,14 +12,31 @@ public class Dagger : MonoBehaviour
     [SerializeField]
     CameraShakeSO cameraShakeSO;
 
+    [SerializeField]
+    Transform teleportPosition;
+
+    [SerializeField]
+    ParticleSystem daggerHitParticles;
+
     Rigidbody2D rb;
     bool hasCollided;
     PlayerShooting playerShooting;
+    float lifetime = 5f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerShooting = FindAnyObjectByType<PlayerShooting>();
+    }
+
+    void Update()
+    {
+        lifetime -= Time.deltaTime;
+        if (lifetime <= 0f)
+        {
+            Destroy(gameObject);
+            playerShooting.SetCanPlayerShoot(true);
+        }
     }
 
     void FixedUpdate()
@@ -37,11 +53,8 @@ public class Dagger : MonoBehaviour
         int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
         if (collision.gameObject.layer == platformLayerIndex)
         {
-            CameraShake.Instance.ShakeCamera(
-                cameraShakeSO.GetIntensity(),
-                cameraShakeSO.GetFrequency(),
-                cameraShakeSO.GetDuration()
-            );
+            Instantiate(daggerHitParticles, teleportPosition.position, Quaternion.identity);
+            AudioManager.instance.PlayDaggerHitSFX();
             hasCollided = true;
             StartCoroutine(TeleportPlayer());
         }
@@ -55,8 +68,21 @@ public class Dagger : MonoBehaviour
 
     IEnumerator TeleportPlayer()
     {
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        AudioManager.instance.PlayTeleportationSFX();
         yield return new WaitForSeconds(teleportDelay);
-        playerShooting.transform.position = transform.position;
+        playerShooting.transform.position = teleportPosition.position;
+        playerShooting.transform.localScale = new Vector2(
+            -Mathf.Sign(Mathf.DeltaAngle(0, transform.eulerAngles.z)),
+            playerShooting.transform.localScale.y
+        );
+        CameraShake.Instance.ShakeCamera(
+            cameraShakeSO.GetIntensity(),
+            cameraShakeSO.GetFrequency(),
+            cameraShakeSO.GetDuration()
+        );
+
         playerShooting.SetCanPlayerShoot(true);
         yield return null;
         Destroy(gameObject);

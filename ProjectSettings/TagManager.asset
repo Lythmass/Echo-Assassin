@@ -14,8 +14,8 @@ TagManager:
   - Platform
   - Dagger
   - Enemy
-  - 
-  - 
+  - Camera
+  - Hazards
   - 
   - 
   - 
@@ -41,11 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1770194713
+    locked: 0
   - name: Dagger
     uniqueID: 1266908347
     locked: 0
   - name: Platform
     uniqueID: 3394959887
+    locked: 0
+  - name: Hazards
+    uniqueID: 2895482831
     locked: 0
   - name: Enemy
     uniqueID: 4271787793

@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
         moveInput = moveAction.ReadValue<Vector2>();
         Flip();
         isGrounded = Physics2D.OverlapCircle(groundDetector.position, radius, platformLayer);
+        if (jumpAction.WasPressedThisFrame() && currentCoyoteTime > Mathf.Epsilon)
+        {
+            AudioManager.instance.PlayJumpSFX();
+        }
         if (!isGrounded)
         {
             hasLanded = false;
@@ -86,15 +90,24 @@ public class PlayerController : MonoBehaviour
         else
         {
             currentCoyoteTime = coyoteTime;
-            if (!hasLanded && maxFallSpeedBeforeLanding <= slamThreshold)
+            if (!hasLanded)
             {
-                maxFallSpeedBeforeLanding = 0f;
-                CameraShake.Instance.ShakeCamera(
-                    cameraShakeSO.GetIntensity(),
-                    cameraShakeSO.GetFrequency(),
-                    cameraShakeSO.GetDuration()
-                );
-                landingEffect.Play();
+                if (maxFallSpeedBeforeLanding <= slamThreshold)
+                {
+                    AudioManager.instance.PlayHeavyLandSFX();
+                    maxFallSpeedBeforeLanding = 0f;
+                    CameraShake.Instance.ShakeCamera(
+                        cameraShakeSO.GetIntensity(),
+                        cameraShakeSO.GetFrequency(),
+                        cameraShakeSO.GetDuration()
+                    );
+                    landingEffect.Play();
+                }
+                else
+                {
+                    AudioManager.instance.PlayLandSFX();
+                }
+
                 hasLanded = true;
             }
         }
@@ -157,9 +170,19 @@ public class PlayerController : MonoBehaviour
         return jumpAction.IsPressed();
     }
 
+    public bool GetWasPressedJump()
+    {
+        return jumpAction.WasPressedThisFrame();
+    }
+
     public bool GetIsMoving()
     {
         return moveInput.x != 0;
+    }
+
+    public bool HasJumped()
+    {
+        return currentCoyoteTime > Mathf.Epsilon;
     }
 
     void OnDrawGizmos()

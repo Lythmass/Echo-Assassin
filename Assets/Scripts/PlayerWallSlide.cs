@@ -43,6 +43,10 @@ public class PlayerWallSlide : MonoBehaviour
         {
             isWallJumping = false;
         }
+        if (playerController.GetWasPressedJump() && currentCoyoteTime > 0f)
+        {
+            AudioManager.instance.PlayJumpSFX();
+        }
     }
 
     void FixedUpdate()
