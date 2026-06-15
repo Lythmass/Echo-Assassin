@@ -4,6 +4,14 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+    [Header("Background Music")]
+    [SerializeField]
+    AudioClip backgroundMusic;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float musicVolume;
+
     [Header("Teleportation SFX")]
     [SerializeField]
     AudioClip[] teleportationSFX;
@@ -53,12 +61,32 @@ public class AudioManager : MonoBehaviour
     float heavyLandVolume;
 
     AudioSource audioSource;
+    AudioSource musicSource;
 
     void Awake()
     {
-        instance = this;
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    void Start()
+    {
         audioSource = GetComponent<AudioSource>();
         audioSource.spatialBlend = 0f;
+
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.clip = backgroundMusic;
+        musicSource.spatialBlend = 0f;
+        musicSource.volume = musicVolume;
+        musicSource.loop = true;
+        musicSource.Play();
     }
 
     public void PlayTeleportationSFX()

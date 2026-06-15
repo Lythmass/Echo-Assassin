@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0157031606e9b9f45a68ce8e683028c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  backgroundMusic: {fileID: 8300000, guid: 3dc7edda88806e34fb105a5ef90e38f7, type: 3}
+  musicVolume: 0.05
   teleportationSFX:
   - {fileID: 8300000, guid: 657f3be722623f44481d4c1bb90a41d1, type: 3}
   teleportationVolume: 0.15

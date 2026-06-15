@@ -51,7 +51,11 @@ public class Dagger : MonoBehaviour
     {
         int platformLayerIndex = LayerMask.NameToLayer("Platform");
         int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
-        if (collision.gameObject.layer == platformLayerIndex)
+        int hazardsLayerIndex = LayerMask.NameToLayer("Hazards");
+        if (
+            collision.gameObject.layer == platformLayerIndex
+            || collision.gameObject.layer == hazardsLayerIndex
+        )
         {
             Instantiate(daggerHitParticles, teleportPosition.position, Quaternion.identity);
             AudioManager.instance.PlayDaggerHitSFX();
