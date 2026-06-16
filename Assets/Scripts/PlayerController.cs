@@ -150,6 +150,11 @@ public class PlayerController : MonoBehaviour
             return;
         int direction = (int)Mathf.Sign(moveInput.x);
         transform.localScale = new Vector2(direction, transform.localScale.y);
+        SetCameraHorizontalOffset(direction);
+    }
+
+    public void SetCameraHorizontalOffset(int direction)
+    {
         if (direction == 1)
         {
             cinemachineFramingTransposer.m_ScreenX = leftOffset;

@@ -21,12 +21,14 @@ public class Dagger : MonoBehaviour
     Rigidbody2D rb;
     bool hasCollided;
     PlayerShooting playerShooting;
+    PlayerController playerController;
     float lifetime = 5f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerShooting = FindAnyObjectByType<PlayerShooting>();
+        playerController = FindAnyObjectByType<PlayerController>();
     }
 
     void Update()
@@ -77,10 +79,13 @@ public class Dagger : MonoBehaviour
         AudioManager.instance.PlayTeleportationSFX();
         yield return new WaitForSeconds(teleportDelay);
         playerShooting.transform.position = teleportPosition.position;
+        int direction = (int)-Mathf.Sign(Mathf.DeltaAngle(0, transform.eulerAngles.z));
+        playerController.SetCameraHorizontalOffset(direction);
         playerShooting.transform.localScale = new Vector2(
-            -Mathf.Sign(Mathf.DeltaAngle(0, transform.eulerAngles.z)),
+            direction,
             playerShooting.transform.localScale.y
         );
+
         CameraShake.Instance.ShakeCamera(
             cameraShakeSO.GetIntensity(),
             cameraShakeSO.GetFrequency(),

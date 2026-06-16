@@ -47,6 +47,11 @@ public class PlayerWallSlide : MonoBehaviour
         {
             AudioManager.instance.PlayJumpSFX();
         }
+
+        if (!isWallSliding && !playerController.GetIsGrounded())
+        {
+            playerController.SetCameraHorizontalOffset(transform.localScale.x > 0 ? 1 : -1);
+        }
     }
 
     void FixedUpdate()
@@ -61,6 +66,7 @@ public class PlayerWallSlide : MonoBehaviour
         {
             isWallSliding = true;
             rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -wallSlidingSpeed, float.MaxValue);
+            playerController.SetCameraHorizontalOffset(transform.localScale.x > 0 ? -1 : 1);
         }
         else
         {

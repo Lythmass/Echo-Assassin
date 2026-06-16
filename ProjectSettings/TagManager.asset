@@ -16,7 +16,7 @@ TagManager:
   - Enemy
   - Camera
   - Hazards
-  - 
+  - Interactibles
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Hazards
     uniqueID: 2895482831
+    locked: 0
+  - name: Interactibles
+    uniqueID: 916854255
     locked: 0
   - name: Enemy
     uniqueID: 4271787793
