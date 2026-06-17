@@ -109,7 +109,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1266908347
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: ebc0f698b3854464db8dea48fffc57a8, type: 3}
@@ -200,7 +200,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1266908347
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: ebc0f698b3854464db8dea48fffc57a8, type: 3}
@@ -332,6 +332,8 @@ MonoBehaviour:
   cameraShakeSO: {fileID: 11400000, guid: 1c7301daf34e60f47bdd2a5a562750a3, type: 2}
   teleportPosition: {fileID: 4521774494726142302}
   daggerHitParticles: {fileID: 66604049964871496, guid: 8bbc8dc42a897d24a91ae423170b99b7, type: 3}
+  teleportDisplaceParticles: {fileID: 8182331802408716701, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+  preTeleportParticles: {fileID: 5847608841832133673, guid: ec877994c066cd14497b5a9ad3411f58, type: 3}
 --- !u!1 &7231107227977116707
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +412,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1266908347
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: ebc0f698b3854464db8dea48fffc57a8, type: 3}

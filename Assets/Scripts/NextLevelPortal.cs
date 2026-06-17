@@ -7,7 +7,6 @@ public class NextLevelPortal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("asdf");
         if (((1 << collision.gameObject.layer) & playerLayer) != 0)
         {
             LevelManager.instance.LoadNextLevel();

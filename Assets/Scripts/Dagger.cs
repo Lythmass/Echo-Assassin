@@ -18,6 +18,12 @@ public class Dagger : MonoBehaviour
     [SerializeField]
     ParticleSystem daggerHitParticles;
 
+    [SerializeField]
+    ParticleSystem teleportDisplaceParticles;
+
+    [SerializeField]
+    ParticleSystem preTeleportParticles;
+
     Rigidbody2D rb;
     bool hasCollided;
     PlayerShooting playerShooting;
@@ -78,7 +84,13 @@ public class Dagger : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         AudioManager.instance.PlayTeleportationSFX();
         yield return new WaitForSeconds(teleportDelay);
+        Instantiate(preTeleportParticles, playerController.transform.position, Quaternion.identity);
         playerShooting.transform.position = teleportPosition.position;
+        Instantiate(
+            teleportDisplaceParticles,
+            playerController.transform.position,
+            Quaternion.identity
+        );
         int direction = (int)-Mathf.Sign(Mathf.DeltaAngle(0, transform.eulerAngles.z));
         playerController.SetCameraHorizontalOffset(direction);
         playerShooting.transform.localScale = new Vector2(
