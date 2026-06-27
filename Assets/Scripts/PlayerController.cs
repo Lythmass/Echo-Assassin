@@ -190,6 +190,11 @@ public class PlayerController : MonoBehaviour
         return currentCoyoteTime > Mathf.Epsilon;
     }
 
+    public void ResetVelocity()
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
+
     void OnDrawGizmos()
     {
         if (groundDetector == null)

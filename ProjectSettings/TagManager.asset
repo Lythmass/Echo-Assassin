@@ -17,7 +17,7 @@ TagManager:
   - Camera
   - Hazards
   - Interactibles
-  - 
+  - Wall Slide
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Platform
     uniqueID: 3394959887
+    locked: 0
+  - name: Wall Slide
+    uniqueID: 2125359575
     locked: 0
   - name: Hazards
     uniqueID: 2895482831

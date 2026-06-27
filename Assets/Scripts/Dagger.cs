@@ -65,7 +65,11 @@ public class Dagger : MonoBehaviour
             || collision.gameObject.layer == hazardsLayerIndex
         )
         {
-            Instantiate(daggerHitParticles, teleportPosition.position, Quaternion.identity);
+            Instantiate(
+                daggerHitParticles,
+                teleportPosition.position,
+                Quaternion.AngleAxis(transform.eulerAngles.z + 225, Vector3.forward)
+            );
             AudioManager.instance.PlayDaggerHitSFX();
             hasCollided = true;
             StartCoroutine(TeleportPlayer());
@@ -84,6 +88,7 @@ public class Dagger : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         AudioManager.instance.PlayTeleportationSFX();
         yield return new WaitForSeconds(teleportDelay);
+        playerController.ResetVelocity();
         Instantiate(preTeleportParticles, playerController.transform.position, Quaternion.identity);
         playerShooting.transform.position = teleportPosition.position;
         Instantiate(
