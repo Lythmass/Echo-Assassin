@@ -18,7 +18,7 @@ TagManager:
   - Hazards
   - Interactibles
   - Wall Slide
-  - 
+  - Enemy Bullet
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Interactibles
     uniqueID: 916854255
+    locked: 0
+  - name: Enemy Bullet
+    uniqueID: 1911944871
     locked: 0
   - name: Enemy
     uniqueID: 4271787793

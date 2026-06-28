@@ -4833,7 +4833,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -5041,7 +5041,7 @@ MonoBehaviour:
   wallDetector: {fileID: 7835692753619204629}
   platformLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4096
   playerController: {fileID: 36430159823783040}
 --- !u!114 &4783318301014287549
 MonoBehaviour:
@@ -5201,7 +5201,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5274427596670567171, guid: f7a23593a625f1d48ab0cf0b83066118, type: 3}

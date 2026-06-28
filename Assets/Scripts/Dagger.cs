@@ -78,6 +78,7 @@ public class Dagger : MonoBehaviour
         {
             hasCollided = true;
             StartCoroutine(TeleportPlayer());
+            collision.gameObject.GetComponent<EnemyController>().StopEnemyShootingCoroutine();
             Destroy(collision.gameObject, teleportDelay);
         }
     }
