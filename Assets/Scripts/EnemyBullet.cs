@@ -8,6 +8,12 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField]
     float bulletDestroyTime;
 
+    [SerializeField]
+    LayerMask playerLayer;
+
+    [SerializeField]
+    LayerMask obstaclesLayer;
+
     Rigidbody2D rb;
 
     void Awake()
@@ -23,5 +29,19 @@ public class EnemyBullet : MonoBehaviour
     void Update()
     {
         Destroy(gameObject, bulletDestroyTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        int collisionLayerMask = 1 << collision.gameObject.layer;
+        if ((collisionLayerMask & playerLayer) != 0)
+        {
+            LevelManager.instance.ResetCurrentLevel();
+        }
+
+        if ((collisionLayerMask & obstaclesLayer) != 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

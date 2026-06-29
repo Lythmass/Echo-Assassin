@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3488296210321650542}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0.19, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6337171176508280331}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.8, y: -4.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -201,7 +201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6162dc70515b0064592c3d944a059ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  shootingRate: 0.5
-  shootingRange: 10
+  shootingRate: 1
+  visionRange: 20
+  visionAngle: 60
+  startLookingLeft: 1
   bullet: {fileID: 6699954671443349283, guid: 6ae70af6a2578554c931723976ff24c0, type: 3}
   shootingPosition: {fileID: 5727520243132505549}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 4160
