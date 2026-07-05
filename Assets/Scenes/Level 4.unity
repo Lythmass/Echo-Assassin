@@ -235385,6 +235385,10 @@ PrefabInstance:
       propertyPath: timeManager
       value: 
       objectReference: {fileID: 306748285}
+    - target: {fileID: 7944563156344246357, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
+      propertyPath: knockBackForce.x
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

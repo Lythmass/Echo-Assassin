@@ -60,6 +60,14 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)]
     float heavyLandVolume;
 
+    [Header("Enemy Death SFX")]
+    [SerializeField]
+    AudioClip[] enemyDeathSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float enemyDeathVolume;
+
     AudioSource audioSource;
     AudioSource musicSource;
 
@@ -123,5 +131,11 @@ public class AudioManager : MonoBehaviour
     {
         int index = Random.Range(0, heavyLandSFX.Length);
         audioSource.PlayOneShot(heavyLandSFX[index], heavyLandVolume);
+    }
+
+    public void PlayEnemyDeathSFX()
+    {
+        int index = Random.Range(0, enemyDeathSFX.Length);
+        audioSource.PlayOneShot(enemyDeathSFX[index], enemyDeathVolume);
     }
 }

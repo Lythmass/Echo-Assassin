@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 801028694483315252, guid: 0957050abae49f144ad9a26b7fd5314c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.200001
+      value: -7.17
       objectReference: {fileID: 0}
     - target: {fileID: 801028694483315252, guid: 0957050abae49f144ad9a26b7fd5314c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0999997
+      value: -1.3699996
       objectReference: {fileID: 0}
     - target: {fileID: 801028694483315252, guid: 0957050abae49f144ad9a26b7fd5314c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -265,6 +265,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3987831606452433016, guid: f579b063ad9107240a9a2be1dd1945e3, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4773567859522089550, guid: f579b063ad9107240a9a2be1dd1945e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.62
@@ -406,11 +410,11 @@ PrefabInstance:
       objectReference: {fileID: 894435832}
     - target: {fileID: 512952238124003453, guid: ad522b34951420543ab937533afc5dcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.200001
+      value: -7.17
       objectReference: {fileID: 0}
     - target: {fileID: 512952238124003453, guid: ad522b34951420543ab937533afc5dcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0999997
+      value: -1.3699996
       objectReference: {fileID: 0}
     - target: {fileID: 512952238124003453, guid: ad522b34951420543ab937533afc5dcd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -140590,6 +140594,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65bdfcca6795ae349aad1c53046d87a2, type: 3}
+--- !u!114 &1086012800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7944563156344246357, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
+  m_PrefabInstance: {fileID: 1738371026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c297ff87f6a0caf4298ed25eed1df2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
 --- !u!1001 &1151139743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140713,6 +140728,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 36430159823783040, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
+      propertyPath: playerShooting
+      value: 
+      objectReference: {fileID: 1086012800}
+    - target: {fileID: 36430159823783040, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
       propertyPath: cinemachineVirtualCamera
       value: 
       objectReference: {fileID: 1051946955}
@@ -140722,11 +140741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6513015944364370617, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.6
+      value: -13.57
       objectReference: {fileID: 0}
     - target: {fileID: 6513015944364370617, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9
+      value: -3.17
       objectReference: {fileID: 0}
     - target: {fileID: 6513015944364370617, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -140764,6 +140783,14 @@ PrefabInstance:
       propertyPath: timeManager
       value: 
       objectReference: {fileID: 306748285}
+    - target: {fileID: 7944563156344246357, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
+      propertyPath: knockBackForce
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944563156344246357, guid: 4f4e21352daa1234aa69e9b3197a56f6, type: 3}
+      propertyPath: knockBackDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

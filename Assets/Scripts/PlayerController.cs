@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     LayerMask platformLayer;
 
+    [SerializeField]
+    PlayerShooting playerShooting;
+
     void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
@@ -115,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!playerWallSlide.GetIsWallJumping())
+        if (!playerWallSlide.GetIsWallJumping() && !playerShooting.GetIsBeingKnockedBack())
         {
             rb.linearVelocityX = moveInput.x * speed;
         }

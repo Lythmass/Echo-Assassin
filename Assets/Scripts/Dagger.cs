@@ -24,6 +24,9 @@ public class Dagger : MonoBehaviour
     [SerializeField]
     ParticleSystem preTeleportParticles;
 
+    [SerializeField]
+    ParticleSystem enemyDeathParticles;
+
     Rigidbody2D rb;
     bool hasCollided;
     PlayerShooting playerShooting;
@@ -72,18 +75,19 @@ public class Dagger : MonoBehaviour
             );
             AudioManager.instance.PlayDaggerHitSFX();
             hasCollided = true;
-            StartCoroutine(TeleportPlayer());
+            StartCoroutine(TeleportPlayer(null));
         }
         else if (collision.gameObject.layer == enemyLayerIndex)
         {
             hasCollided = true;
-            StartCoroutine(TeleportPlayer());
+            StartCoroutine(TeleportPlayer(collision.gameObject));
             collision.gameObject.GetComponent<EnemyController>().StopEnemyShootingCoroutine();
-            Destroy(collision.gameObject, teleportDelay);
+            collision.gameObject.GetComponent<Rigidbody2D>().constraints =
+                RigidbodyConstraints2D.FreezeAll;
         }
     }
 
-    IEnumerator TeleportPlayer()
+    IEnumerator TeleportPlayer(GameObject enemy = null)
     {
         rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -97,6 +101,13 @@ public class Dagger : MonoBehaviour
             playerController.transform.position,
             Quaternion.identity
         );
+        if (enemy != null)
+        {
+            playerShooting.KillAnEnemy(enemy.transform.position);
+            Instantiate(enemyDeathParticles, enemy.transform.position, Quaternion.identity);
+            AudioManager.instance.PlayEnemyDeathSFX();
+            Destroy(enemy);
+        }
         int direction = (int)-Mathf.Sign(Mathf.DeltaAngle(0, transform.eulerAngles.z));
         playerController.SetCameraHorizontalOffset(direction);
         playerShooting.transform.localScale = new Vector2(
@@ -112,6 +123,6 @@ public class Dagger : MonoBehaviour
 
         playerShooting.SetCanPlayerShoot(true);
         yield return null;
-        Destroy(gameObject);
+        Destroy(base.gameObject);
     }
 }

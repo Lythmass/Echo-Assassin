@@ -241,3 +241,4 @@ MonoBehaviour:
   daggerHitParticles: {fileID: 66604049964871496, guid: 8bbc8dc42a897d24a91ae423170b99b7, type: 3}
   teleportDisplaceParticles: {fileID: 8182331802408716701, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
   preTeleportParticles: {fileID: 5847608841832133673, guid: ec877994c066cd14497b5a9ad3411f58, type: 3}
+  enemyDeathParticles: {fileID: 2232063074166096078, guid: 50e7307c53639ed44809d2c0ac3213af, type: 3}
