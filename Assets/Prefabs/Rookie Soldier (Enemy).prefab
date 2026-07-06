@@ -207,9 +207,18 @@ MonoBehaviour:
   startLookingLeft: 1
   bullet: {fileID: 6699954671443349283, guid: 6ae70af6a2578554c931723976ff24c0, type: 3}
   shootingPosition: {fileID: 5727520243132505549}
+  canWalk: 0
+  edgeDetector: {fileID: 0}
+  edgeDetectorRadius: 0
+  wallDetector: {fileID: 0}
+  wallDetectorRadius: 0
+  walkSpeed: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 4160
+  platformsLayer:
+    serializedVersion: 2
+    m_Bits: 0

@@ -25,6 +25,25 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     Transform shootingPosition;
 
+    [Header("Movement Parameters")]
+    [SerializeField]
+    bool canWalk = false;
+
+    [SerializeField]
+    Transform edgeDetector;
+
+    [SerializeField]
+    float edgeDetectorRadius;
+
+    [SerializeField]
+    Transform wallDetector;
+
+    [SerializeField]
+    float wallDetectorRadius;
+
+    [SerializeField]
+    float walkSpeed = 2f;
+
     [Header("Layers")]
     [SerializeField]
     LayerMask playerLayer;
@@ -32,17 +51,24 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     LayerMask obstacleLayer;
 
+    [SerializeField]
+    LayerMask platformsLayer;
+
     PlayerController playerController;
     Coroutine shootingCoroutine;
+    Rigidbody2D rb;
+    float moveDirection;
 
     void Awake()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
         shootingCoroutine = StartCoroutine(Shooting());
+        moveDirection = startLookingLeft ? -1f : 1f;
     }
 
     void Update()
@@ -56,6 +82,37 @@ public class EnemyController : MonoBehaviour
                 angle.eulerAngles.z - 90 * (startLookingLeft ? 1 : -1)
             );
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (canWalk)
+        {
+            MoveEnemy();
+        }
+    }
+
+    void MoveEnemy()
+    {
+        bool isAtTheEdge = !Physics2D.OverlapCircle(
+            edgeDetector.position,
+            edgeDetectorRadius,
+            platformsLayer
+        );
+        bool isAtTheWall = Physics2D.OverlapCircle(
+            wallDetector.position,
+            wallDetectorRadius,
+            platformsLayer
+        );
+
+        if (isAtTheEdge || isAtTheWall)
+        {
+            transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+            moveDirection *= -1;
+            startLookingLeft = !startLookingLeft;
+        }
+
+        rb.linearVelocityX = moveDirection * walkSpeed;
     }
 
     Quaternion CalculateAngle()
@@ -132,5 +189,14 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(shootingPosition.position, shootingPosition.position + left * visionRange);
         Gizmos.DrawLine(shootingPosition.position, shootingPosition.position + right * visionRange);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (!canWalk)
+            return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(edgeDetector.position, edgeDetectorRadius);
+        Gizmos.DrawWireSphere(wallDetector.position, wallDetectorRadius);
     }
 }

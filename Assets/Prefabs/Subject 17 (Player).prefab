@@ -5023,7 +5023,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  knockBackForce: 40
+  knockBackForce: {x: -15, y: 40}
 --- !u!114 &3921751031799469505
 MonoBehaviour:
   m_ObjectHideFlags: 0
