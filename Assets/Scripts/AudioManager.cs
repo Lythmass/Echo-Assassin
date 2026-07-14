@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -68,6 +69,30 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)]
     float enemyDeathVolume;
 
+    [Header("UI Hover SFX")]
+    [SerializeField]
+    AudioClip[] uiHoverSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float uiHoverVolume;
+
+    [Header("UI Click SFX")]
+    [SerializeField]
+    AudioClip[] uiClickSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float uiClickVolume;
+
+    [Header("Key Collection SFX")]
+    [SerializeField]
+    AudioClip[] keyCollectionSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float keyCollectionVolume;
+
     AudioSource audioSource;
     AudioSource musicSource;
 
@@ -95,6 +120,18 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = musicVolume;
         musicSource.loop = true;
         musicSource.Play();
+    }
+
+    void Update()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            musicSource.pitch = 0.8f;
+        }
+        else
+        {
+            musicSource.pitch = 1f;
+        }
     }
 
     public void PlayTeleportationSFX()
@@ -137,5 +174,23 @@ public class AudioManager : MonoBehaviour
     {
         int index = Random.Range(0, enemyDeathSFX.Length);
         audioSource.PlayOneShot(enemyDeathSFX[index], enemyDeathVolume);
+    }
+
+    public void PlayUIHoverSFX()
+    {
+        int index = Random.Range(0, uiHoverSFX.Length);
+        audioSource.PlayOneShot(uiHoverSFX[index], uiHoverVolume);
+    }
+
+    public void PlayUIClickSFX()
+    {
+        int index = Random.Range(0, uiClickSFX.Length);
+        audioSource.PlayOneShot(uiClickSFX[index], uiClickVolume);
+    }
+
+    public void PlayKeyCollectionSFX()
+    {
+        int index = Random.Range(0, keyCollectionSFX.Length);
+        audioSource.PlayOneShot(keyCollectionSFX[index], keyCollectionVolume);
     }
 }

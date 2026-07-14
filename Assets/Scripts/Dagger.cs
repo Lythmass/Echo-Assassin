@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Dagger : MonoBehaviour
 {
@@ -31,9 +33,10 @@ public class Dagger : MonoBehaviour
     bool hasCollided;
     PlayerShooting playerShooting;
     PlayerController playerController;
+
     float lifetime = 5f;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerShooting = FindAnyObjectByType<PlayerShooting>();

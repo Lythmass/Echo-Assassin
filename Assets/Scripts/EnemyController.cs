@@ -73,7 +73,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (IsPlayerInVision())
+        if (IsPlayerInVision() && !canWalk)
         {
             Quaternion angle = CalculateAngle();
             shootingPosition.rotation = Quaternion.Euler(
