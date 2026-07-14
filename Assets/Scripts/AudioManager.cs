@@ -122,6 +122,16 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
+    public void SetMusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+
+    public float GetMusicVolume()
+    {
+        return musicSource.volume;
+    }
+
     void Update()
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)

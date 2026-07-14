@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonActions : MonoBehaviour
 {
@@ -8,7 +9,16 @@ public class ButtonActions : MonoBehaviour
     [SerializeField]
     GameObject settingsMenu;
 
+    [SerializeField]
+    Slider volumeSlider;
+
     bool isChangingMenus = false;
+    float musicVolume;
+
+    void Start()
+    {
+        musicVolume = AudioManager.instance.GetMusicVolume();
+    }
 
     public void Play()
     {
@@ -36,6 +46,12 @@ public class ButtonActions : MonoBehaviour
     {
         AudioManager.instance.PlayUIClickSFX();
         Application.Quit();
+    }
+
+    public void VolumeSlider()
+    {
+        AudioManager.instance.GetComponent<AudioSource>().volume = volumeSlider.value;
+        AudioManager.instance.SetMusicVolume(volumeSlider.value * musicVolume);
     }
 
     public bool GetIsChangingMenus()
