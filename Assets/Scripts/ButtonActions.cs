@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class ButtonActions : MonoBehaviour
@@ -12,12 +13,17 @@ public class ButtonActions : MonoBehaviour
     [SerializeField]
     Slider volumeSlider;
 
+    [SerializeField]
+    Toggle postProcessingToggle;
+
     bool isChangingMenus = false;
     float musicVolume;
+    Volume globalVolume;
 
     void Start()
     {
         musicVolume = AudioManager.instance.GetMusicVolume();
+        globalVolume = FindAnyObjectByType<Volume>();
     }
 
     public void Play()
@@ -52,6 +58,12 @@ public class ButtonActions : MonoBehaviour
     {
         AudioManager.instance.GetComponent<AudioSource>().volume = volumeSlider.value;
         AudioManager.instance.SetMusicVolume(volumeSlider.value * musicVolume);
+    }
+
+    public void PostProcessingCheckbox()
+    {
+        GameController.instance.SetPostProcessingEnabled(postProcessingToggle.isOn);
+        globalVolume.gameObject.SetActive(postProcessingToggle.isOn);
     }
 
     public bool GetIsChangingMenus()
