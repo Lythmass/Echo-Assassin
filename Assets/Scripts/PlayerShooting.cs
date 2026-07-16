@@ -115,4 +115,9 @@ public class PlayerShooting : MonoBehaviour
     {
         return knockBackTimer;
     }
+
+    public bool GetIsHoldingDownMouse()
+    {
+        return isHoldingDownMouse;
+    }
 }
