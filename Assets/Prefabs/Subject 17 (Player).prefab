@@ -5059,9 +5059,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0547ca2d26369f34583e76a2710f7c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
-  hazardsLayer:
+  lethalLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 9472
 --- !u!114 &3586842447772120258
 MonoBehaviour:
   m_ObjectHideFlags: 0

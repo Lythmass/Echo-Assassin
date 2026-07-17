@@ -25,6 +25,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     Transform shootingPosition;
 
+    [SerializeField]
+    Transform spriteChild;
+
     [Header("Movement Parameters")]
     [SerializeField]
     bool canWalk = false;
@@ -69,6 +72,13 @@ public class EnemyController : MonoBehaviour
     {
         shootingCoroutine = StartCoroutine(Shooting());
         moveDirection = startLookingLeft ? -1f : 1f;
+        if (!canWalk)
+        {
+            spriteChild.transform.localScale = new Vector2(
+                -Mathf.Sign(moveDirection) * spriteChild.transform.localScale.x,
+                spriteChild.transform.localScale.y
+            );
+        }
     }
 
     void Update()
@@ -81,6 +91,22 @@ public class EnemyController : MonoBehaviour
                 0,
                 angle.eulerAngles.z - 90 * (startLookingLeft ? 1 : -1)
             );
+            int facingDirection = startLookingLeft ? 1 : -1;
+            if (angle.eulerAngles.z <= 180)
+            {
+                facingDirection = 1;
+            }
+            else
+            {
+                facingDirection = -1;
+            }
+            if (Mathf.Sign(spriteChild.transform.localScale.x) != Mathf.Sign(facingDirection))
+            {
+                spriteChild.transform.localScale = new Vector2(
+                    -spriteChild.transform.localScale.x,
+                    spriteChild.transform.localScale.y
+                );
+            }
         }
     }
 
