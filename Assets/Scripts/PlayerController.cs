@@ -64,12 +64,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     PlayerShooting playerShooting;
 
+    PlayerDeath playerDeath;
+
     void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         platformLayer = LayerMask.GetMask("Platform");
         rb = GetComponent<Rigidbody2D>();
+        playerDeath = GetComponent<PlayerDeath>();
         currentCoyoteTime = coyoteTime;
         cinemachineFramingTransposer =
             cinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -77,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!playerDeath.GetIsAlive())
+            return;
         moveInput = moveAction.ReadValue<Vector2>();
         Flip();
         isGrounded = Physics2D.OverlapCircle(groundDetector.position, radius, platformLayer);
@@ -118,6 +123,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!playerDeath.GetIsAlive())
+            return;
         if (!playerWallSlide.GetIsWallJumping() && !playerShooting.GetIsBeingKnockedBack())
         {
             rb.linearVelocityX = moveInput.x * speed;

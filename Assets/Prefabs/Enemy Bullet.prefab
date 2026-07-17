@@ -108,12 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBullet
   bulletSpeed: 25
   bulletDestroyTime: 3
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
   obstaclesLayer:
     serializedVersion: 2
-    m_Bits: 5184
+    m_Bits: 5192
 --- !u!50 &-3708167274012769284
 Rigidbody2D:
   serializedVersion: 5

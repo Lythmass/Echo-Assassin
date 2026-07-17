@@ -115,6 +115,10 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 645147356362792962, guid: f579b063ad9107240a9a2be1dd1945e3, type: 3}
+      propertyPath: obstacleLayer.m_Bits
+      value: 4160
+      objectReference: {fileID: 0}
+    - target: {fileID: 645147356362792962, guid: f579b063ad9107240a9a2be1dd1945e3, type: 3}
       propertyPath: platformsLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}

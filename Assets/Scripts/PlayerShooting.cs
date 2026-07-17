@@ -31,15 +31,20 @@ public class PlayerShooting : MonoBehaviour
     bool canPlayerShoot;
     bool isHoldingDownMouse;
 
+    PlayerDeath playerDeath;
+
     void Awake()
     {
         attackAction = InputSystem.actions.FindAction("Attack");
         rb = GetComponent<Rigidbody2D>();
         canPlayerShoot = true;
+        playerDeath = GetComponent<PlayerDeath>();
     }
 
     void Update()
     {
+        if (!playerDeath.GetIsAlive())
+            return;
         if (attackAction.IsPressed() && canPlayerShoot && !isHoldingDownMouse)
         {
             timeManager.SlowTimeDown();
@@ -69,6 +74,8 @@ public class PlayerShooting : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!playerDeath.GetIsAlive())
+            return;
         KnockBackOnKill();
     }
 
