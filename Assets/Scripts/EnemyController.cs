@@ -61,10 +61,12 @@ public class EnemyController : MonoBehaviour
     Coroutine shootingCoroutine;
     Rigidbody2D rb;
     float moveDirection;
+    PlayerDeath playerDeath;
 
     void Awake()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+        playerDeath = playerController.GetComponent<PlayerDeath>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -152,6 +154,8 @@ public class EnemyController : MonoBehaviour
 
     bool IsPlayerInVision()
     {
+        if (!playerDeath.GetIsAlive())
+            return false;
         Vector2 playerPosition = playerController.transform.position;
         float distance = Vector2.Distance(playerPosition, shootingPosition.position);
         if (distance > visionRange)
@@ -188,6 +192,7 @@ public class EnemyController : MonoBehaviour
             if (IsPlayerInVision())
             {
                 Quaternion angle = CalculateAngle();
+                AudioManager.instance.PlayEnemyShootingSFX();
                 Instantiate(bullet, shootingPosition.position, angle);
             }
             yield return new WaitForSeconds(shootingRate);

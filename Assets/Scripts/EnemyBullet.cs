@@ -11,6 +11,9 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField]
     LayerMask obstaclesLayer;
 
+    [SerializeField]
+    ParticleSystem bulletHitParticles;
+
     Rigidbody2D rb;
 
     void Awake()
@@ -31,9 +34,10 @@ public class EnemyBullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         int collisionLayerMask = 1 << collision.gameObject.layer;
-
         if ((collisionLayerMask & obstaclesLayer) != 0)
         {
+            Instantiate(bulletHitParticles, transform.position, Quaternion.identity);
+            AudioManager.instance.PlayEnemyBulletHitSFX();
             Destroy(gameObject);
         }
     }

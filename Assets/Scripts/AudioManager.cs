@@ -93,6 +93,38 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)]
     float keyCollectionVolume;
 
+    [Header("Enemy Shooting SFX")]
+    [SerializeField]
+    AudioClip[] enemyShootingSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float enemyShootingVolume;
+
+    [Header("Enemy Bullet Hit SFX")]
+    [SerializeField]
+    AudioClip[] enemyBulletHitSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float enemyBulletHitVolume;
+
+    [Header("Player Damage SFX")]
+    [SerializeField]
+    AudioClip[] playerDamageSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float playerDamageVolume;
+
+    [Header("Player Blow Up SFX")]
+    [SerializeField]
+    AudioClip[] playerBlowUpSFX;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    float playerBlowUpVolume;
+
     AudioSource audioSource;
     AudioSource musicSource;
 
@@ -202,5 +234,29 @@ public class AudioManager : MonoBehaviour
     {
         int index = Random.Range(0, keyCollectionSFX.Length);
         audioSource.PlayOneShot(keyCollectionSFX[index], keyCollectionVolume);
+    }
+
+    public void PlayEnemyShootingSFX()
+    {
+        int index = Random.Range(0, enemyShootingSFX.Length);
+        audioSource.PlayOneShot(enemyShootingSFX[index], enemyShootingVolume);
+    }
+
+    public void PlayEnemyBulletHitSFX()
+    {
+        int index = Random.Range(0, enemyBulletHitSFX.Length);
+        audioSource.PlayOneShot(enemyBulletHitSFX[index], enemyBulletHitVolume);
+    }
+
+    public void PlayPlayerDamageSFX()
+    {
+        int index = Random.Range(0, playerDamageSFX.Length);
+        audioSource.PlayOneShot(playerDamageSFX[index], playerDamageVolume);
+    }
+
+    public void PlayPlayerBlowUpSFX()
+    {
+        int index = Random.Range(0, playerBlowUpSFX.Length);
+        audioSource.PlayOneShot(playerBlowUpSFX[index], playerBlowUpVolume);
     }
 }

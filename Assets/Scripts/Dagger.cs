@@ -31,16 +31,18 @@ public class Dagger : MonoBehaviour
 
     Rigidbody2D rb;
     bool hasCollided;
-    PlayerShooting playerShooting;
     PlayerController playerController;
+    PlayerShooting playerShooting;
+    PlayerDeath playerDeath;
 
     float lifetime = 5f;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerShooting = FindAnyObjectByType<PlayerShooting>();
         playerController = FindAnyObjectByType<PlayerController>();
+        playerShooting = playerController.GetComponent<PlayerShooting>();
+        playerDeath = playerController.GetComponent<PlayerDeath>();
     }
 
     void Update()
@@ -63,6 +65,8 @@ public class Dagger : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!playerDeath.GetIsAlive())
+            return;
         int platformLayerIndex = LayerMask.NameToLayer("Platform");
         int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
         int hazardsLayerIndex = LayerMask.NameToLayer("Hazards");

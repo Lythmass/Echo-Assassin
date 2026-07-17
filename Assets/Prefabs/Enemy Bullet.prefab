@@ -111,6 +111,7 @@ MonoBehaviour:
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 5192
+  bulletHitParticles: {fileID: 2840820660861656240, guid: 3330fe8bcce7e954db1a0616b1119bab, type: 3}
 --- !u!50 &-3708167274012769284
 Rigidbody2D:
   serializedVersion: 5

@@ -45,6 +45,7 @@ public class PlayerDeath : MonoBehaviour
         int collisionLayerMask = 1 << gameObject.layer;
         if ((collisionLayerMask & lethalLayers) != 0 && isAlive)
         {
+            AudioManager.instance.PlayPlayerDamageSFX();
             isAlive = false;
             rb.linearVelocity = Vector2.zero;
             StartCoroutine(WaitBeforeLevelReset());
@@ -58,6 +59,8 @@ public class PlayerDeath : MonoBehaviour
 
         rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        AudioManager.instance.PlayPlayerBlowUpSFX();
+
         Instantiate(deathParticles, transform.position, quaternion.identity);
         foreach (Transform child in children)
         {

@@ -76,6 +76,18 @@ MonoBehaviour:
   keyCollectionSFX:
   - {fileID: 8300000, guid: c825a042c5ab7d34f85f90dc5713fcf4, type: 3}
   keyCollectionVolume: 0.2
+  enemyShootingSFX:
+  - {fileID: 8300000, guid: 9d980855404a2ee48b519ac1c31de0a8, type: 3}
+  enemyShootingVolume: 0.2
+  enemyBulletHitSFX:
+  - {fileID: 8300000, guid: 7bb6e0833ede0a74abfc49c5ae42bb26, type: 3}
+  enemyBulletHitVolume: 0.2
+  playerDamageSFX:
+  - {fileID: 8300000, guid: 06658a203990c5d4b8759488fa7f84c8, type: 3}
+  playerDamageVolume: 0.2
+  playerBlowUpSFX:
+  - {fileID: 8300000, guid: 9936e25beb3c9a14e861578b29d0191d, type: 3}
+  playerBlowUpVolume: 0.2
 --- !u!82 &7300543278570855733
 AudioSource:
   m_ObjectHideFlags: 0
