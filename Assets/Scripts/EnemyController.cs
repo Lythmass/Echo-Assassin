@@ -23,6 +23,12 @@ public class EnemyController : MonoBehaviour
     GameObject bullet;
 
     [SerializeField]
+    ParticleSystem shootEffect;
+
+    [SerializeField]
+    Transform effectPosition;
+
+    [SerializeField]
     Transform shootingPosition;
 
     [SerializeField]
@@ -80,6 +86,13 @@ public class EnemyController : MonoBehaviour
                 -Mathf.Sign(moveDirection) * spriteChild.transform.localScale.x,
                 spriteChild.transform.localScale.y
             );
+            if (!startLookingLeft)
+            {
+                effectPosition.transform.localPosition = new Vector2(
+                    effectPosition.transform.localPosition.x * -1,
+                    effectPosition.transform.localPosition.y
+                );
+            }
         }
     }
 
@@ -107,6 +120,10 @@ public class EnemyController : MonoBehaviour
                 spriteChild.transform.localScale = new Vector2(
                     -spriteChild.transform.localScale.x,
                     spriteChild.transform.localScale.y
+                );
+                effectPosition.transform.localPosition = new Vector2(
+                    effectPosition.transform.localPosition.x * -1,
+                    effectPosition.transform.localPosition.y
                 );
             }
         }
@@ -194,6 +211,7 @@ public class EnemyController : MonoBehaviour
                 Quaternion angle = CalculateAngle();
                 AudioManager.instance.PlayEnemyShootingSFX();
                 Instantiate(bullet, shootingPosition.position, angle);
+                Instantiate(shootEffect, effectPosition.position, Quaternion.identity);
             }
             yield return new WaitForSeconds(shootingRate);
         }
