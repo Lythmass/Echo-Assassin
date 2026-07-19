@@ -47,6 +47,9 @@ TagManager:
   - name: Fall Theshold
     uniqueID: 391526069
     locked: 0
+  - name: Rain
+    uniqueID: 3704921993
+    locked: 0
   - name: Dagger
     uniqueID: 1266908347
     locked: 0
@@ -70,6 +73,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3587739957
+    locked: 0
+  - name: UI
+    uniqueID: 3413120697
     locked: 0
   m_RenderingLayers:
   - Default

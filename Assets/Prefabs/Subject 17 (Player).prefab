@@ -4833,7 +4833,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -5014,7 +5014,8 @@ MonoBehaviour:
   dagger: {fileID: 6766732684023361416, guid: 3b334dc24db201a459f836e72d36871f, type: 3}
   shootingPosition: {fileID: 5240246518857543430}
   timeManager: {fileID: 0}
-  knockBackDuration: 0.2
+  teleportLimiter: {fileID: 0}
+  knockBackDuration: 0.1
   attackAction:
     m_Name: Attack
     m_Type: 0
@@ -5163,7 +5164,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Positions:
@@ -5339,7 +5340,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5274427596670567171, guid: f7a23593a625f1d48ab0cf0b83066118, type: 3}

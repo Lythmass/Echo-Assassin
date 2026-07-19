@@ -13,6 +13,9 @@ public class PlayerShooting : MonoBehaviour
     TimeManager timeManager;
 
     [SerializeField]
+    TeleportLimiter teleportLimiter;
+
+    [SerializeField]
     float knockBackDuration;
     float knockBackTimer;
 
@@ -45,7 +48,12 @@ public class PlayerShooting : MonoBehaviour
     {
         if (!playerDeath.GetIsAlive())
             return;
-        if (attackAction.IsPressed() && canPlayerShoot && !isHoldingDownMouse)
+        if (
+            attackAction.IsPressed()
+            && canPlayerShoot
+            && !isHoldingDownMouse
+            && teleportLimiter.GetCanTeleport()
+        )
         {
             timeManager.SlowTimeDown();
             isHoldingDownMouse = true;
@@ -55,11 +63,17 @@ public class PlayerShooting : MonoBehaviour
             isHoldingDownMouse = false;
             endShootPosition = Mouse.current.position.value;
             Shoot();
+            teleportLimiter.DecreaseTeleportCount();
             SetCanPlayerShoot(false);
         }
         if (!isHoldingDownMouse)
         {
+            teleportLimiter.ResetSlowMotionDuration();
             timeManager.ResetTime();
+        }
+        else
+        {
+            teleportLimiter.DecreaseSlowMotionDuration();
         }
 
         if (startTimer)
@@ -102,6 +116,7 @@ public class PlayerShooting : MonoBehaviour
         hasKilledEnemy = true;
         knockBackTimer = knockBackDuration;
         enemyKilledPosition = position;
+        teleportLimiter.GainTeleportCount();
     }
 
     public bool GetIsBeingKnockedBack()
