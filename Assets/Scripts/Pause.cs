@@ -35,6 +35,7 @@ public class Pause : MonoBehaviour
 
     public void PauseGame()
     {
+        AudioManager.instance.PlayUIClickSFX();
         isPaused = true;
         Time.timeScale = 0f;
         panel.SetActive(true);
@@ -43,6 +44,7 @@ public class Pause : MonoBehaviour
 
     public void ResumeGame()
     {
+        AudioManager.instance.PlayUIClickSFX();
         isPaused = false;
         Time.timeScale = 1f;
         panel.SetActive(false);

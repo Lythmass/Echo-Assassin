@@ -27,4 +27,10 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(1);
         }
     }
+
+    public void LoadMainMenu()
+    {
+        AudioManager.instance.PlayUIClickSFX();
+        SceneManager.LoadScene(0);
+    }
 }

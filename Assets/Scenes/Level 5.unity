@@ -579,6 +579,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1679485693256741373, guid: 305c7124285dd1649967c10a8e951578, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3775972523327708567}
+    - target: {fileID: 1679485693256741373, guid: 305c7124285dd1649967c10a8e951578, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 1712764235148338563, guid: 305c7124285dd1649967c10a8e951578, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -307874,6 +307882,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c28b79b379dee06459ba2f7037216818, type: 3}
+--- !u!114 &3775972523327708567 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3674137162455185745, guid: c28b79b379dee06459ba2f7037216818, type: 3}
+  m_PrefabInstance: {fileID: 3775972523327708566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7e8115c03e0524cb04f7b91cd5b3c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
