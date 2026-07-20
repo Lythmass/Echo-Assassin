@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
@@ -35,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
     bool isHoldingDownMouse;
 
     PlayerDeath playerDeath;
+    Pause pauseManager;
 
     void Awake()
     {
@@ -42,14 +44,16 @@ public class PlayerShooting : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         canPlayerShoot = true;
         playerDeath = GetComponent<PlayerDeath>();
+        pauseManager = FindAnyObjectByType<Pause>();
     }
 
     void Update()
     {
-        if (!playerDeath.GetIsAlive())
+        if (!playerDeath.GetIsAlive() || pauseManager.GetIsPaused())
             return;
         if (
             attackAction.IsPressed()
+            && !EventSystem.current.IsPointerOverGameObject()
             && canPlayerShoot
             && !isHoldingDownMouse
             && teleportLimiter.GetCanTeleport()

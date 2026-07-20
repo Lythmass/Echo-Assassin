@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     PlayerShooting playerShooting;
 
     PlayerDeath playerDeath;
+    Pause pauseManager;
 
     void Awake()
     {
@@ -74,13 +75,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerDeath = GetComponent<PlayerDeath>();
         currentCoyoteTime = coyoteTime;
+        pauseManager = FindAnyObjectByType<Pause>();
         cinemachineFramingTransposer =
             cinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
     void Update()
     {
-        if (!playerDeath.GetIsAlive())
+        if (!playerDeath.GetIsAlive() || pauseManager.GetIsPaused())
             return;
         moveInput = moveAction.ReadValue<Vector2>();
         Flip();

@@ -69,10 +69,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9936e25beb3c9a14e861578b29d0191d, type: 3}
   - {fileID: 8300000, guid: 4da0b49a3b45e624690e17e89c8bb1a3, type: 3}
   enemyDeathVolume: 0.25
-  uiHoverSFX: []
-  uiHoverVolume: 0
-  uiClickSFX: []
-  uiClickVolume: 0
+  uiHoverSFX:
+  - {fileID: 8300000, guid: a8e92bd4c21741e4e9d2631d8564d60e, type: 3}
+  uiHoverVolume: 0.25
+  uiClickSFX:
+  - {fileID: 8300000, guid: 74d6493d89ff28e4bb6e0e0841230835, type: 3}
+  uiClickVolume: 0.25
   keyCollectionSFX:
   - {fileID: 8300000, guid: c825a042c5ab7d34f85f90dc5713fcf4, type: 3}
   keyCollectionVolume: 0.2

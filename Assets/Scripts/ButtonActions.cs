@@ -24,6 +24,8 @@ public class ButtonActions : MonoBehaviour
     {
         musicVolume = AudioManager.instance.GetMusicVolume();
         globalVolume = FindAnyObjectByType<Volume>();
+        volumeSlider.value = GameController.instance.GetAudioVolume();
+        postProcessingToggle.isOn = GameController.instance.GetPostProcessingEnabled();
     }
 
     public void Play()
@@ -56,6 +58,7 @@ public class ButtonActions : MonoBehaviour
 
     public void VolumeSlider()
     {
+        GameController.instance.SetAudioVolume(volumeSlider.value);
         AudioManager.instance.GetComponent<AudioSource>().volume = volumeSlider.value;
         AudioManager.instance.SetMusicVolume(volumeSlider.value * musicVolume);
     }

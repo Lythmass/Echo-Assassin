@@ -19,6 +19,8 @@ public class HoverEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     void Update()
     {
+        if (!buttonActions)
+            return;
         if (buttonActions.GetIsChangingMenus())
         {
             StartFade(0f);

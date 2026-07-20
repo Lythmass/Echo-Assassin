@@ -18,8 +18,17 @@ public class PlayerAim : MonoBehaviour
     [SerializeField]
     PlayerShooting playerShooting;
 
+    Pause pauseManager;
+
+    void Awake()
+    {
+        pauseManager = FindAnyObjectByType<Pause>();
+    }
+
     void Update()
     {
+        if (pauseManager.GetIsPaused())
+            return;
         if (playerShooting.GetIsHoldingDownMouse())
         {
             CastRay();

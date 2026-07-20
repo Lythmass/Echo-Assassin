@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585c8324ea4b1da4db54378d70d3b75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeleportLimiter
-  maxTeleportCount: 3
-  teleportResetDuration: 2
-  slowMotionDuration: 2
+  maxTeleportCount: 4
+  teleportResetDuration: 1.5
+  slowMotionDuration: 1.5
   timeManager: {fileID: 0}
   teleportBars:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

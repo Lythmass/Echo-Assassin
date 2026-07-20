@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
     bool postProcessingEnabled = true;
+    float audioVolume;
 
     void Awake()
     {
@@ -20,6 +21,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        audioVolume = AudioManager.instance.GetComponent<AudioSource>().volume;
+    }
+
     public void SetPostProcessingEnabled(bool value)
     {
         postProcessingEnabled = value;
@@ -28,5 +34,15 @@ public class GameController : MonoBehaviour
     public bool GetPostProcessingEnabled()
     {
         return postProcessingEnabled;
+    }
+
+    public float GetAudioVolume()
+    {
+        return audioVolume;
+    }
+
+    public void SetAudioVolume(float volume)
+    {
+        audioVolume = volume;
     }
 }

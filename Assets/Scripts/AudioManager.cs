@@ -161,7 +161,7 @@ public class AudioManager : MonoBehaviour
 
     public float GetMusicVolume()
     {
-        return musicSource.volume;
+        return musicVolume;
     }
 
     void Update()
