@@ -20,7 +20,7 @@ TagManager:
   - Wall Slide
   - Enemy Bullet
   - Fall Theshold
-  - 
+  - Tutorial UI
   - 
   - 
   - 
@@ -67,6 +67,9 @@ TagManager:
     locked: 0
   - name: Enemy Bullet
     uniqueID: 1911944871
+    locked: 0
+  - name: Tutorial UI
+    uniqueID: 705315843
     locked: 0
   - name: Enemy
     uniqueID: 4271787793

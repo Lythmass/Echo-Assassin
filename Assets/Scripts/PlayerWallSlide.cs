@@ -43,10 +43,6 @@ public class PlayerWallSlide : MonoBehaviour
         {
             isWallJumping = false;
         }
-        if (playerController.GetWasPressedJump() && currentCoyoteTime > 0f)
-        {
-            AudioManager.instance.PlayJumpSFX();
-        }
 
         if (!isWallSliding && !playerController.GetIsGrounded())
         {
@@ -89,6 +85,7 @@ public class PlayerWallSlide : MonoBehaviour
         }
         if (playerController.GetIsJumping() && currentCoyoteTime > 0f)
         {
+            AudioManager.instance.PlayJumpSFX();
             playerController.StopIsJumping();
             isWallJumping = true;
             rb.linearVelocity = new Vector2(
