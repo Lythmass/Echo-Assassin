@@ -66,8 +66,6 @@ public class Dagger : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!playerDeath.GetIsAlive())
-            return;
         int platformLayerIndex = LayerMask.NameToLayer("Platform");
         int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
         int hazardsLayerIndex = LayerMask.NameToLayer("Hazards");
@@ -83,12 +81,22 @@ public class Dagger : MonoBehaviour
             );
             AudioManager.instance.PlayDaggerHitSFX();
             hasCollided = true;
-            StartCoroutine(TeleportPlayer(null));
+            rb.linearVelocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            if (playerDeath.GetIsAlive())
+            {
+                StartCoroutine(TeleportPlayer(null));
+            }
         }
         else if (collision.gameObject.layer == enemyLayerIndex)
         {
             hasCollided = true;
-            StartCoroutine(TeleportPlayer(collision.gameObject));
+            rb.linearVelocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            if (playerDeath.GetIsAlive())
+            {
+                StartCoroutine(TeleportPlayer(collision.gameObject));
+            }
             collision.gameObject.GetComponent<EnemyController>().StopEnemyShootingCoroutine();
             collision.gameObject.GetComponent<Rigidbody2D>().constraints =
                 RigidbodyConstraints2D.FreezeAll;
@@ -97,8 +105,6 @@ public class Dagger : MonoBehaviour
 
     IEnumerator TeleportPlayer(GameObject enemy = null)
     {
-        rb.linearVelocity = Vector2.zero;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
         AudioManager.instance.PlayTeleportationSFX();
         yield return new WaitForSeconds(teleportDelay);
         playerController.ResetVelocity();

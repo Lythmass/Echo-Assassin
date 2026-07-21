@@ -166,7 +166,11 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (
+            SceneManager.GetActiveScene().buildIndex == 0
+            || SceneManager.GetActiveScene().buildIndex
+                == SceneManager.sceneCountInBuildSettings - 1
+        )
         {
             musicSource.pitch = 0.8f;
         }

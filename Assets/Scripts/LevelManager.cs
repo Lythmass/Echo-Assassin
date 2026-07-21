@@ -30,7 +30,6 @@ public class LevelManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        AudioManager.instance.PlayUIClickSFX();
         SceneManager.LoadScene(0);
     }
 }

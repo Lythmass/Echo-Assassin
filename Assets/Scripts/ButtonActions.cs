@@ -31,7 +31,7 @@ public class ButtonActions : MonoBehaviour
     public void Play()
     {
         AudioManager.instance.PlayUIClickSFX();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        LevelManager.instance.LoadNextLevel();
     }
 
     public void Options()
@@ -77,5 +77,11 @@ public class ButtonActions : MonoBehaviour
     public void SetIsChangingMenusFalse()
     {
         isChangingMenus = false;
+    }
+
+    public void LoadMainMenu()
+    {
+        AudioManager.instance.PlayUIClickSFX();
+        LevelManager.instance.LoadMainMenu();
     }
 }

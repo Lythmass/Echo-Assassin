@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerDeath playerDeath;
     Pause pauseManager;
+    TimeManager timeManager;
     bool isJumpButtonPressed;
 
     void Awake()
@@ -77,14 +78,22 @@ public class PlayerController : MonoBehaviour
         playerDeath = GetComponent<PlayerDeath>();
         currentCoyoteTime = coyoteTime;
         pauseManager = FindAnyObjectByType<Pause>();
+        timeManager = FindAnyObjectByType<TimeManager>();
         cinemachineFramingTransposer =
             cinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
     void Update()
     {
-        if (!playerDeath.GetIsAlive() || pauseManager.GetIsPaused())
+        if (pauseManager.GetIsPaused())
             return;
+
+        if (!playerDeath.GetIsAlive())
+        {
+            timeManager.ResetTime();
+            return;
+        }
+
         moveInput = moveAction.ReadValue<Vector2>();
         if (jumpAction.WasPressedThisFrame())
         {
