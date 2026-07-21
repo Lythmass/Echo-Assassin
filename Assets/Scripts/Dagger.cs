@@ -35,7 +35,8 @@ public class Dagger : MonoBehaviour
     PlayerShooting playerShooting;
     PlayerDeath playerDeath;
 
-    float lifetime = 5f;
+    [SerializeField]
+    float lifetime = 2f;
 
     void Awake()
     {
@@ -110,6 +111,7 @@ public class Dagger : MonoBehaviour
         );
         if (enemy != null)
         {
+            playerController.StopIsJumping();
             playerShooting.KillAnEnemy(enemy.transform.position);
             Instantiate(enemyDeathParticles, enemy.transform.position, Quaternion.identity);
             AudioManager.instance.PlayEnemyDeathSFX();

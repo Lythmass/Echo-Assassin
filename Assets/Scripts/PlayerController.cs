@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerDeath playerDeath;
     Pause pauseManager;
+    bool isJumpButtonPressed;
 
     void Awake()
     {
@@ -85,6 +86,10 @@ public class PlayerController : MonoBehaviour
         if (!playerDeath.GetIsAlive() || pauseManager.GetIsPaused())
             return;
         moveInput = moveAction.ReadValue<Vector2>();
+        if (jumpAction.WasPressedThisFrame())
+        {
+            isJumpButtonPressed = true;
+        }
         Flip();
         isGrounded = Physics2D.OverlapCircle(groundDetector.position, radius, platformLayer);
         if (jumpAction.WasPressedThisFrame() && currentCoyoteTime > Mathf.Epsilon)
@@ -136,11 +141,12 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (jumpAction.IsPressed() && currentCoyoteTime > Mathf.Epsilon)
+        if (isJumpButtonPressed && currentCoyoteTime > Mathf.Epsilon)
         {
             rb.linearVelocityY = jumpForce;
             currentCoyoteTime = 0f;
             isGrounded = false;
+            isJumpButtonPressed = false;
         }
 
         if (rb.linearVelocityY < 0)
@@ -184,7 +190,12 @@ public class PlayerController : MonoBehaviour
 
     public bool GetIsJumping()
     {
-        return jumpAction.IsPressed();
+        return isJumpButtonPressed;
+    }
+
+    public void StopIsJumping()
+    {
+        isJumpButtonPressed = false;
     }
 
     public bool GetWasPressedJump()

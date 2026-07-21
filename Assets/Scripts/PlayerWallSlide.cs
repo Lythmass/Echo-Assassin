@@ -89,6 +89,7 @@ public class PlayerWallSlide : MonoBehaviour
         }
         if (playerController.GetIsJumping() && currentCoyoteTime > 0f)
         {
+            playerController.StopIsJumping();
             isWallJumping = true;
             rb.linearVelocity = new Vector2(
                 wallJumpingDirection * wallJumpingPower.x,
