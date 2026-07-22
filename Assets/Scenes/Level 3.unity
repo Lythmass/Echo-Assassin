@@ -145523,6 +145523,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7595126380337146801, guid: 305c7124285dd1649967c10a8e951578, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00012207031
+      objectReference: {fileID: 0}
     - target: {fileID: 7655347680701005514, guid: 305c7124285dd1649967c10a8e951578, type: 3}
       propertyPath: m_Camera
       value: 
@@ -146286,6 +146290,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9ee30da889ab264ab1509f61b29a45f, type: 3}
+--- !u!1001 &2222703453286763802
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.407119
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.83274555
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520347286550089287, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434038533497339904, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
+      propertyPath: m_Name
+      value: Teleport Displace Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 88c42b9740b1a4d49af8d46141ac54d7, type: 3}
 --- !u!1001 &8196912484617774443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146378,3 +146439,4 @@ SceneRoots:
   - {fileID: 1445943684}
   - {fileID: 1268626787}
   - {fileID: 1473654697}
+  - {fileID: 2222703453286763802}

@@ -4833,7 +4833,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -5164,7 +5164,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Positions:
@@ -5320,7 +5320,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cef9b6f10b3b5443b132458cd928f5c, type: 2}
+  - {fileID: 2100000, guid: 668d365b312a60342a64366507cd6bd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5340,15 +5340,15 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -707227339
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5274427596670567171, guid: f7a23593a625f1d48ab0cf0b83066118, type: 3}
+  m_Sprite: {fileID: -520448758453995795, guid: 86fcd792f74a36b4bbfd80eb60bf1022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
